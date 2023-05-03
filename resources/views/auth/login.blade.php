@@ -1,6 +1,6 @@
 <x-main-layout subtitle="Login" :sidebar="false">
     <div class="flex min-h-screen items-center justify-center bg-leaf-green-100">
-        <x-card cardTitle="Login">
+        <x-card cardTitle="Login" size="max-w-sm">
             <div>
                 <form action="{{ route('auth.login') }}" method="POST" class="space-y-6">
                     @csrf
