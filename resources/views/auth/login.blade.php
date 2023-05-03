@@ -1,5 +1,5 @@
 <x-main-layout subtitle="Login" :sidebar="false">
-    <div class="flex min-h-screen items-center justify-center">
+    <div class="flex min-h-screen items-center justify-center bg-leaf-green-100">
         <x-card cardTitle="Login">
             <div>
                 <form action="{{ route('auth.login') }}" method="POST" class="space-y-6">
