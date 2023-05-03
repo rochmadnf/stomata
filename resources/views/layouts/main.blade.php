@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8" />
@@ -11,11 +11,22 @@
 
     <link rel="shortcut icon" href="https://rochmadnf.my.id/assets/images/favicon.png" type="image/png">
 
-    @vite('resources/css/app.css')
+    <link rel="preconnect" href="https://fonts.bunny.net">
+
+    <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700" rel="stylesheet" />
+
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="antialiased text-gray-900">
-    {{ $slot }}
+<body class="bg-green-50 text-gray-900 antialiased dark:bg-slate-800 dark:text-gray-50">
+    @if ($sidebar)
+        <h1>Sidebar Activated</h1>
+    @else
+        <main class="min-h-screen w-full">
+            {{ $slot }}
+        </main>
+    @endif
 </body>
 
 </html>
