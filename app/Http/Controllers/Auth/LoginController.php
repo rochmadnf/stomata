@@ -14,6 +14,9 @@ class LoginController extends Controller
 
     public function logIn(Request $request)
     {
-        dd($request->all());
+        $this->isValidRequest($request->all(), [
+            "email" => ['required', 'email'],
+            "password" => ['required', 'string', 'min:8'],
+        ]);
     }
 }
