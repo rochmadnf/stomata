@@ -8,11 +8,12 @@
                     <x-forms.input label="katasandi" name="password" type="password" placeholder="password" />
 
                     <x-forms.button label="Login" color="primary" />
-                    <p class="text-sm font-light">Belum memiliki akun?
-                        <a class="text-green-500" href="#">Daftar</a>
-                    </p>
                 </form>
             </div>
+
+            <p class="text-sm font-light">Belum memiliki akun?
+                <a class="text-green-500" href="{{ route('auth.iregister') }}">Daftar</a>
+            </p>
         </x-card>
     </div>
 </x-main-layout>
