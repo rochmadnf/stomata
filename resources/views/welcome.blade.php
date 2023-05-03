@@ -1,20 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Rochmad Nurul Fahmi" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Stomata</title>
-
-    @vite('resources/css/app.css')
-</head>
-
-<body>
-    <h1 class="text-3xl font-bold underline">
-        Hello world!
-    </h1>
-</body>
-
-</html>
+<x-main-layout subtitle="test">
+    <div class="text-2xl text-blue-600">abcd</div>
+</x-main-layout>
