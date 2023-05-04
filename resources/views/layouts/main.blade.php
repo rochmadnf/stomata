@@ -27,6 +27,8 @@
             {{ $slot }}
         </main>
     @endif
+
+    {{ $scripts ?? '' }}
 </body>
 
 </html>
