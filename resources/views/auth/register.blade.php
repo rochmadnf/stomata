@@ -1,5 +1,5 @@
 <x-main-layout subtitle="Daftar" :sidebar="false">
-    <div class="flex min-h-screen items-center justify-center">
+    <div class="flex min-h-screen items-center justify-center py-24 bg-leaf-green-200">
         <x-card cardTitle="Daftar" size="max-w-2xl">
             <div>
                 <form action="{{ route('auth.register') }}" method="POST" class="space-y-6">
@@ -39,6 +39,12 @@
                                 <option disabled selected value="false">--Pilih Kelurahan/Desa--</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div id="mapbox" class="h-72 rounded-md"></div>
+                    <div class="mb-5 grid gap-2 md:grid-cols-2 md:gap-6">
+                        <x-forms.input name="long" placeholder="0.0" label="longitude" :readonly="true" />
+                        <x-forms.input name="lat" placeholder="0.0" label="latitude" :readonly="true" />
                     </div>
 
                     <x-forms.button label="Daftar" color="primary" />

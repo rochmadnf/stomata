@@ -1,4 +1,5 @@
 import axios from "axios";
+import "../mapbox";
 
 const baseUrl = `${location.protocol}//${location.host}`;
 
