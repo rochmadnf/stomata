@@ -1,48 +1,32 @@
 <x-main-layout subtitle="Daftar" :sidebar="false">
     <div class="flex min-h-screen items-center justify-center py-24 bg-leaf-green-200">
-        <x-card cardTitle="Daftar" size="max-w-2xl">
-            <div>
-                <form action="{{ route('auth.register') }}" method="POST" class="space-y-6">
+        <x-card cardTitle="Daftar" size="max-w-3xl">
+            <div class="mt-8">
+                <form action="{{ route('auth.register') }}" method="POST" id="regisForm">
                     @csrf
-                    <div class="mb-5 grid gap-6 md:grid-cols-2">
-                        <div>
-                            <label for="province" class="mb-2 block text-sm font-medium">Provinsi</label>
-                            <select id="province" name="province"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
-                                <option value="72" selected>Sulawesi Tengah</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="city" class="mb-2 block text-sm font-medium">Kota/Kabupaten</label>
-                            <select id="city" name="city"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
-                                <option value="71" selected>Kota Palu</option>
-                            </select>
-                        </div>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <x-forms.select name="province" label="Provinsi" initOptVal="72" initOptLabel="Sulawesi Tengah" />
+                        <x-forms.select name="city" label="Kota/Kabupaten" initOptVal="71"
+                            initOptLabel="Kota Palu" />
                     </div>
 
-                    <div class="mb-5 grid gap-6 md:grid-cols-2">
-                        <div>
-                            <label for="district" class="mb-2 block text-sm font-medium">Kecamatan</label>
-                            <select id="district" name="district"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
-                                <option disabled selected value="false">--Pilih Kecamatan--</option>
+                    <div class="grid gap-6 md:grid-cols-2">
+                        <x-forms.select name="district" label="Kecamatan" :disabled="true">
+                            <x-slot name="options">
                                 @foreach ($districts as $district)
                                     <option value="{{ $district->code }}">{{ $district->name }}</option>
                                 @endforeach
-                            </select>
-                        </div>
-                        <div>
-                            <label for="sub_district" class="mb-2 block text-sm font-medium">Kelurahan/Desa</label>
-                            <select id="sub_district" name="sub_district"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500">
-                                <option disabled selected value="false">--Pilih Kelurahan/Desa--</option>
-                            </select>
-                        </div>
+                            </x-slot>
+                        </x-forms.select>
+                        <x-forms.select name="sub_district" label="Kelurahan/Desa" :disabled="true" />
                     </div>
 
-                    <div id="mapbox" class="h-72 rounded-md"></div>
-                    <div class="mb-5 grid gap-2 md:grid-cols-2 md:gap-6">
+                    <div class="mb-5">
+                        <label class="mb-2 block text-sm font-medium">Lokasi</label>
+                        <div id="mapbox" class="h-72 rounded-md border border-green-200"></div>
+                    </div>
+
+                    <div class="hidden">
                         <x-forms.input name="long" placeholder="0.0" label="longitude" :readonly="true" />
                         <x-forms.input name="lat" placeholder="0.0" label="latitude" :readonly="true" />
                     </div>
