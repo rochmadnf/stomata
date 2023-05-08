@@ -6,7 +6,7 @@
         'bg-red-50 border-red-500 focus:ring-red-500 focus:border-red-500' => $errors->has(
             $name),
     ])
-        placeholder="{{ $placeholder ?? '' }}" value="{{ old($name) ?? '' }}" @readonly($readonly ?? false)>
+        placeholder="{{ $placeholder ?? $label . '...' }}" value="{{ old($name) ?? '' }}" @readonly($readonly ?? false)>
 
     @error($name)
         <small class="mt-2 text-sm text-red-600 dark:text-red-500">
