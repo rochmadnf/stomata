@@ -17,6 +17,10 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $this->isValidRequest($request->except('_token'), [
+            'full_name'    => ['required'],
+            'phone_number' => ['required'],
+            'address'      => ['required'],
+            'gender'       => ['required'],
             'district'     => ['required'],
             'sub_district' => ['required'],
         ], 'api');
