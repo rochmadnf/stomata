@@ -8,15 +8,17 @@ class Main extends Component
 {
 
     public $subtitle;
+    public $sidebar;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($subtitle)
+    public function __construct($subtitle, $sidebar = true)
     {
         $this->subtitle = ucwords($subtitle);
+        $this->sidebar  = $sidebar;
     }
 
     /**
