@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "mapbox-gl": "^2.14.1",
-        "mini-svg-data-uri": "^1.4.4"
+        "mini-svg-data-uri": "^1.4.4",
+        "vanilla-masker": "^1.2.0"
     }
 }
