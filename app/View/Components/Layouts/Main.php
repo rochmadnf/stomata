@@ -15,10 +15,10 @@ class Main extends Component
      *
      * @return void
      */
-    public function __construct($subtitle, $sidebar)
+    public function __construct($subtitle, $sidebar = true)
     {
         $this->subtitle = ucwords($subtitle);
-        $this->sidebar  = $sidebar ?? true;
+        $this->sidebar  = $sidebar;
     }
 
     /**
