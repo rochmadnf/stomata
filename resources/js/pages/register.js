@@ -42,15 +42,15 @@ regisForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const property = new FormData(e.target);
-    btnSubmit.setAttribute("disabled", true);
-    btnSubmit.innerHTML = Spinner({ class: "w-4 h-4 text-white" });
+    // btnSubmit.setAttribute("disabled", true);
+    // btnSubmit.innerHTML = Spinner({ class: "w-4 h-4 text-white" });
 
     await axios
         .post(e.target.action, property)
         .then((res) => console.log(res))
         .catch(() => {
-            btnSubmit.innerHTML = "Daftar";
-            btnSubmit.removeAttribute("disabled");
+            // btnSubmit.innerHTML = "Daftar";
+            // btnSubmit.removeAttribute("disabled");
         });
 });
 
