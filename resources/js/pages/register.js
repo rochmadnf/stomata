@@ -2,6 +2,8 @@ import axios from "axios";
 import "../mapbox";
 import Spinner from "../components/icons/spinner";
 import Masker from "vanilla-masker";
+import Toast from "toastify-js";
+import "toastify-js/src/toastify.css";
 
 const baseUrl = `${location.protocol}//${location.host}`;
 
@@ -102,7 +104,22 @@ btnNext.addEventListener("click", () => {
         console.log(userData);
         showHide("next");
     } else {
-        alert("Terdapat data yang belum diisi/dipilih.");
+        Toast({
+            text: "Terdapat data yang belum diisi/dipilih.",
+            close: true,
+            position: "center",
+            duration: 5000,
+            stopOnFocus: true,
+            style: {
+                color: "rgb(255 255 255/1)",
+                fontWeight: 500,
+                fontSize: ".875rem",
+                lineHeight: "1.25rem",
+                backgroundImage:
+                    "linear-gradient(to right, #f98080 0%, #f05252 65%, #e02424 100%)",
+                borderRadius: "8px",
+            },
+        }).showToast();
     }
 });
 
