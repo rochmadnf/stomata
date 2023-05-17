@@ -20,17 +20,21 @@ class RegisterController extends Controller
     {
         $request->request->set('phone_number', Str::remove('-', $request->phone_number));
 
-        $this->isValidRequest($request->except('_token'), [
-            'full_name'    => ['required', 'string', 'min:3'],
-            'phone_number' => ['required', 'numeric', 'unique:users'],
-            'address'      => ['required', 'string', 'min:3'],
-            'gender'       => ['required', 'in:1,0'],
-            'district'     => ['required', 'integer'],
-            'sub_district' => ['required', 'integer'],
+        $this->isValidRequest(
+            $request->except('_token'),
+            [
+                'full_name'    => ['bail', 'required', 'string', 'min:3'],
+                'phone_number' => ['bail', 'required', 'numeric', 'unique:users'],
+                'address'      => ['bail', 'required', 'string', 'min:5'],
+                'gender'       => ['bail', 'required', 'in:1,0'],
+                'district'     => ['bail', 'required', 'integer'],
+                'sub_district' => ['bail', 'required', 'integer'],
 
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ], 'api');
+                'email'    => ['bail', 'required', 'email', 'unique:users'],
+                'password' => ['bail', 'required', 'string', 'min:8', 'confirmed'],
+            ],
+            'api'
+        );
 
         // format attribute
         $request->request->set('password', bcrypt($request->password));
