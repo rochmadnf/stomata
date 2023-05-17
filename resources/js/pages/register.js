@@ -3,6 +3,8 @@ import "../mapbox";
 import Spinner from "../components/icons/spinner";
 import Masker from "vanilla-masker";
 
+import Swal from "sweetalert2";
+
 const baseUrl = `${location.protocol}//${location.host}`;
 
 async function getRegion() {
@@ -102,7 +104,19 @@ btnNext.addEventListener("click", () => {
         console.log(userData);
         showHide("next");
     } else {
-        alert("Terdapat data yang belum diisi/dipilih.");
+        Swal.fire({
+            title: "Galat",
+            text: "Terdapat data yang belum diisi/dipilih.",
+            position: "top",
+            color: "#fff",
+            background: "#f87171",
+            toast: true,
+            timer: 3000,
+            timerProgressBar: true,
+            icon: "error",
+            iconColor: "#fff",
+            showConfirmButton: false,
+        });
     }
 });
 
