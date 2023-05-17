@@ -1,6 +1,6 @@
 <x-main-layout subtitle="Daftar" :sidebar="false">
     <div class="flex min-h-screen items-center justify-center py-24 bg-leaf-green-200">
-        <x-card cardTitle="Daftar" size="max-w-3xl">
+        <x-card id="registerCard" cardTitle="Daftar" size="max-w-3xl">
             <div class="mt-8">
                 <form action="{{ route('auth.register') }}" method="POST" id="regisForm">
                     @csrf

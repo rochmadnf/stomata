@@ -51,10 +51,38 @@ regisForm.addEventListener("submit", async (e) => {
             SwalToast.success("Berhasil", res.data.message);
             location.href = `${baseUrl}/login`;
         })
-        .catch(() => {
+        .catch((err) => {
+            // store record fail
+            if (document.querySelector("#errorCard"))
+                document.querySelector("#errorCard").remove();
+
+            const field = err.response.data.field;
+            let errorsField = "";
+
+            for (const key in field) {
+                errorsField += `<p class="text-base">➡️ ${field[key]}</p>`;
+            }
+
+            document.querySelector("#registerCard > h4").insertAdjacentHTML(
+                "afterend",
+                `
+            <div id="errorCard" class="mt-8 rounded-md bg-red-200 px-4 pt-2 pb-4">
+                <h3 class="mb-4 border-b border-b-gray-500 text-lg font-bold">Kesalahan Data</h3>
+                ${errorsField}
+            </div>`
+            );
+
+            document.querySelector("#errorCard").scrollIntoView({
+                behavior: "smooth",
+            });
+
             btnSubmit.innerHTML = "Daftar";
             btnSubmit.removeAttribute("disabled");
         });
+});
+
+window.addEventListener("load", (ev) => {
+    // regisForm.reset();
 });
 
 function showHide(act) {
