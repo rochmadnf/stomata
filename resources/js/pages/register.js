@@ -72,7 +72,7 @@ function showHide(act) {
         sUserData.classList.remove("hidden");
         btnSubmit.classList.add("hidden");
         btnPrev.classList.replace("visible", "invisible");
-        btnNext.classList.replace("invisible", "visibile");
+        btnNext.classList.replace("invisible", "visible");
     }
 }
 
@@ -95,16 +95,12 @@ btnNext.addEventListener("click", () => {
 
     arrayOfUserData.forEach((item) => {
         if (!Boolean(userData.get(item))) {
-            console.log("berhenti");
             isValid = false;
             return;
         }
     });
 
     if (isValid) {
-        console.log(arrayOfUserData[7], userData.get(arrayOfUserData[7]));
-
-        console.log(userData);
         showHide("next");
     } else {
         SwalToast.error("Galat", "Terdapat data yang belum diisi/dipilih.");
