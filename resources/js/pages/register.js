@@ -3,7 +3,7 @@ import "../mapbox";
 import Spinner from "../components/icons/spinner";
 import Masker from "vanilla-masker";
 
-import Swal from "sweetalert2";
+import { SwalToast } from "../components/SweetAlert";
 
 const baseUrl = `${location.protocol}//${location.host}`;
 
@@ -42,15 +42,18 @@ regisForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const property = new FormData(e.target);
-    // btnSubmit.setAttribute("disabled", true);
-    // btnSubmit.innerHTML = Spinner({ class: "w-4 h-4 text-white" });
+    btnSubmit.setAttribute("disabled", true);
+    btnSubmit.innerHTML = Spinner({ class: "w-4 h-4 text-white" });
 
     await axios
         .post(e.target.action, property)
-        .then((res) => console.log(res))
+        .then((res) => {
+            SwalToast.success("Berhasil", res.data.message);
+            location.href = `${baseUrl}/login`;
+        })
         .catch(() => {
-            // btnSubmit.innerHTML = "Daftar";
-            // btnSubmit.removeAttribute("disabled");
+            btnSubmit.innerHTML = "Daftar";
+            btnSubmit.removeAttribute("disabled");
         });
 });
 
@@ -104,19 +107,7 @@ btnNext.addEventListener("click", () => {
         console.log(userData);
         showHide("next");
     } else {
-        Swal.fire({
-            title: "Galat",
-            text: "Terdapat data yang belum diisi/dipilih.",
-            position: "top",
-            color: "#fff",
-            background: "#f87171",
-            toast: true,
-            timer: 3000,
-            timerProgressBar: true,
-            icon: "error",
-            iconColor: "#fff",
-            showConfirmButton: false,
-        });
+        SwalToast.error("Galat", "Terdapat data yang belum diisi/dipilih.");
     }
 });
 
