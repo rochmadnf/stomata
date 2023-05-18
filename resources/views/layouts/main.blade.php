@@ -21,7 +21,10 @@
 
 <body class="bg-green-50 text-gray-900 antialiased dark:bg-slate-800 dark:text-gray-50">
     @if ($sidebar)
-        <h1>Sidebar Activated</h1>
+        @include('layouts.sidebar')
+        <div class="p-4 sm:ml-64">
+            {{ $slot }}
+        </div>
     @else
         <main class="min-h-screen w-full">
             {{ $slot }}
