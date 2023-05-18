@@ -82,7 +82,7 @@ regisForm.addEventListener("submit", async (e) => {
 });
 
 window.addEventListener("load", (ev) => {
-    // regisForm.reset();
+    regisForm.reset();
 });
 
 function showHide(act) {
