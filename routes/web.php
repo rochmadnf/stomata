@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -8,9 +9,9 @@ Route::middleware('auth')->group(function () {
         return view('pages.dashboard');
     })->name('dashboard');
 
-    Route::get('/users', function () {
-        return view('pages.users');
-    })->name('users');
+    Route::controller(UserController::class)->group(function () {
+        Route::get('/users', 'index')->name('users');
+    });
 
     Route::get('/profile', function () {
         return view('pages.profile');
