@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -14,4 +15,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
         return view('pages.profile');
     })->name('profile');
+});
+
+Route::prefix('api')->group(function () {
+    Route::get('user-coords', function () {
+        return response()->json(User::all());
+    });
 });
