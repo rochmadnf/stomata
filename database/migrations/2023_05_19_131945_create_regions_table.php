@@ -1,19 +1,17 @@
 <?php
 
-namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
-class RegionSeeder extends Seeder
+return new class extends Migration
 {
     /**
-     * Run the database seeds.
+     * Run the migrations.
      *
      * @return void
      */
-    public function run()
+    public function up()
     {
         $regions = [
             base_path('database/sql/provinces.sql'),
@@ -27,4 +25,16 @@ class RegionSeeder extends Seeder
             DB::unprepared($sql);
         }
     }
-}
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        foreach (['provinces', 'cities', 'districts', 'sub_districts'] as $item) {
+            Schema::dropIfExists($item);
+        }
+    }
+};

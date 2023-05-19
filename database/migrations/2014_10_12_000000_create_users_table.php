@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('phone_number', 15)->unique();
             $table->text('address');
-            $table->unsignedBigInteger('region_id')->nullable();
             $table->double('lat');
             $table->double('long');
 
