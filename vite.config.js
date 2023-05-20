@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/pages/register.js",
                 "resources/js/pages/dashboard-admin.js",
+                "resources/js/pages/users.js",
             ],
             refresh: true,
         }),
