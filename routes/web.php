@@ -12,7 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->prefix('users')->group(function () {
         Route::get('active', 'index')->name('users.active');
         Route::get('non-active', 'indexNon')->name('users.nonActive');
-        Route::get('activation/{user_id}', 'activation')->name('users.activation');
+        Route::patch('{user_id}', 'activation')->name('users.activation');
         Route::delete('{user_id}', 'destroy')->name('users.destroy');
     });
 

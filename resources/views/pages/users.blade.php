@@ -76,7 +76,7 @@
                                     </div>
 
                                     {{-- @activation --}}
-                                    <a href="{{ route('users.activation', ['user_id' => $au->id]) }}"
+                                    <button data-button="activation" data-user="{{ $au->id }}"
                                         data-tooltip-target="tooltip-edit" data-tooltip-placement="top" role="button"
                                         class="{{ request()->route()->getName() === 'users.active'? 'bg-pink-500 hover:bg-pink-600 focus:ring-pink-300': 'bg-teal-400 hover:bg-teal-600 focus:ring-teal-300' }} inline-flex items-center rounded-lg p-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4">
 
@@ -86,7 +86,7 @@
                                             <i class="fa-solid fa-user-check"></i>
                                         @endif
 
-                                    </a>
+                                    </button>
                                     <div id="tooltip-edit" role="tooltip"
                                         class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
                                         {{ request()->route()->getName() === 'users.active'? 'Nonaktifkan': 'Aktifkan' }}

@@ -61,10 +61,23 @@ async function confirmAlert(text, userId, _method) {
 document.querySelectorAll('[data-button="delete"]').forEach((btnDelete) => {
     btnDelete.addEventListener("click", async (el) => {
         const item = el.target.closest("button");
-        confirmAlert(
+        await confirmAlert(
             "Data tidak dapat dikembalikan lagi!",
             item.getAttribute("data-user"),
             "DELETE"
         );
     });
 });
+
+document
+    .querySelectorAll('[data-button="activation"]')
+    .forEach((btnActivation) => {
+        btnActivation.addEventListener("click", async (el) => {
+            const item = el.target.closest("button");
+            await confirmAlert(
+                "Anda akan mengaktifkan akun yang dipilih.",
+                item.getAttribute("data-user"),
+                "PATCH"
+            );
+        });
+    });
