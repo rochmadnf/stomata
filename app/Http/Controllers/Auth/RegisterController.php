@@ -45,4 +45,9 @@ class RegisterController extends Controller
 
         return response()->json(["status" => "success", "message" => "Pendaftaran akun telah berhasil."]);
     }
+
+    public function congrats()
+    {
+        return view('pages.register-success');
+    }
 }

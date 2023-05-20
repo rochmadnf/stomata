@@ -48,8 +48,7 @@ regisForm.addEventListener("submit", async (e) => {
     await axios
         .post(e.target.action, property)
         .then((res) => {
-            SwalToast.success("Berhasil", res.data.message);
-            location.href = `${baseUrl}/login`;
+            location.href = `${baseUrl}/register/success`;
         })
         .catch((err) => {
             // store record fail

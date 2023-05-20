@@ -11,4 +11,5 @@ Route::controller(LoginController::class)->prefix('login')->group(function () {
 Route::controller(RegisterController::class)->prefix('register')->group(function () {
     Route::get('', 'index')->name('auth.iregister');
     Route::post('', 'store')->name('auth.register');
+    Route::get('success', 'congrats')->name('auth.register.success');
 });
