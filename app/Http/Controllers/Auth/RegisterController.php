@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegisterUserSuccessEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\{DB, Mail};
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -42,6 +43,9 @@ class RegisterController extends Controller
 
         // create user record
         User::create($request->except(['district', 'sub_district', '_token', 'password_confirmation']));
+
+        // kirim email
+        Mail::to($request->email)->send(new RegisterUserSuccessEmail($request->full_name));
 
         return response()->json(["status" => "success", "message" => "Pendaftaran akun telah berhasil."]);
     }
