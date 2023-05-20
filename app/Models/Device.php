@@ -11,8 +11,18 @@ class Device extends Model
 
     protected $fillable = ['token', 'name', 'user_id'];
 
+    public function lastDeviceData()
+    {
+        return $this->hasOne(DeviceData::class)->latestOfMany();
+    }
+
     public function deviceData()
     {
         return $this->hasMany(DeviceData::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
