@@ -9,8 +9,9 @@ Route::middleware('auth')->group(function () {
         return view('pages.dashboard');
     })->name('dashboard');
 
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/users', 'index')->name('users');
+    Route::controller(UserController::class)->prefix('users')->group(function () {
+        Route::get('active', 'index')->name('users.active');
+        Route::get('non-active', 'indexNon')->name('users.nonActive');
     });
 
     Route::get('/profile', function () {
