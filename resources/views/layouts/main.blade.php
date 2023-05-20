@@ -15,6 +15,7 @@
 
     <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700" rel="stylesheet" />
 
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.0/css/all.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
