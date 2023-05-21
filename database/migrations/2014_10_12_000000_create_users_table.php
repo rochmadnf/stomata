@@ -18,6 +18,7 @@ return new class extends Migration
 
             $table->string('full_name');
             $table->string('phone_number', 15)->unique();
+            $table->boolean('gender');
             $table->text('address');
             $table->double('lat');
             $table->double('long');
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->boolean('is_admin')->default(false);
             $table->boolean('is_active')->default(false);
             $table->softDeletes();
 
