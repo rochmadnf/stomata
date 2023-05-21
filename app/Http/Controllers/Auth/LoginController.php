@@ -37,6 +37,8 @@ class LoginController extends Controller
 
         Auth::attempt($request->only('email', 'password'));
 
+        session()->put('username', auth()->user()->full_name);
+
         return redirect()->route('dashboard');
     }
 }

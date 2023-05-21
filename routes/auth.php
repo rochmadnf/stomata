@@ -8,11 +8,11 @@ Route::controller(LoginController::class)->prefix('login')->group(function () {
     Route::post('', 'logIn')->name('auth.login');
 });
 
-Route::get('logout', function () {
+Route::post('logout', function () {
     auth()->logout();
 
     return redirect()->route('auth.ilogin');
-});
+})->name('logout');
 
 Route::controller(RegisterController::class)->prefix('register')->group(function () {
     Route::get('', 'index')->name('auth.iregister');
