@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UpdateDeviceDataEvent;
 use App\Models\Device;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,9 @@ class DeviceController extends Controller
         $device = Device::with('user', 'deviceData')->where('token', $request->device_token)->first();
 
         $device->deviceData()->create(["filled" => $request->filled, "unfilled" => $request->unfilled]);
+
+        // send broadcast with pusher
+        broadcast(new UpdateDeviceDataEvent("update device data"));
 
         return response()->json(["status" => "success", "message" => "Data berhasil disimpan."], 200);
     }
