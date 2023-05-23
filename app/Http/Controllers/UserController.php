@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index(int $activeUser = 1)
     {
-        $users = User::where('is_active', $activeUser)->whereNotIn('id', [auth()->id()])->paginate();
+        $users = User::where('is_active', $activeUser)->whereNotIn('id', [auth()->id(), config('app.super_admin_id')])->paginate();
         if (!filter_var($activeUser, FILTER_VALIDATE_BOOLEAN)) {
             return $users;
         }
@@ -65,5 +65,14 @@ class UserController extends Controller
         Mail::to($user->email)->send(new UserDeleteMail($user->full_name, $user->email));
 
         return response()->json(["status" => "success", "message" => "Pengguna berhasil dihapus."]);
+    }
+
+    public function getCoords()
+    {
+        return response()->json(
+            User::with(['device', 'device.lastDeviceData'])
+                ->where('is_active', 1)
+                ->whereNot('id', config('app.super_admin_id'))->get()
+        );
     }
 }
