@@ -212,4 +212,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'super_admin_id' =>  env('APP_SUPER_ADMIN_ID', 1),
+
 ];
