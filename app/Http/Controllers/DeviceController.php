@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\UpdateDeviceDataEvent;
-use App\Models\Device;
+use App\Http\Resources\DeviceDataResource;
+use App\Models\{Device, DeviceData};
 use Illuminate\Http\Request;
 
 class DeviceController extends Controller
@@ -24,5 +25,11 @@ class DeviceController extends Controller
         broadcast(new UpdateDeviceDataEvent("update device data"));
 
         return response()->json(["status" => "success", "message" => "Data berhasil disimpan."], 200);
+    }
+
+    public function show($id)
+    {
+        $items = DeviceData::where('device_id', $id)->orderBy('created_at', 'DESC')->get();
+        return response()->json(DeviceDataResource::collection($items));
     }
 }

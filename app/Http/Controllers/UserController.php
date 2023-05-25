@@ -75,4 +75,11 @@ class UserController extends Controller
                 ->whereNot('id', config('app.super_admin_id'))->get()
         );
     }
+
+    public function show(int $id)
+    {
+        $user = User::with('device')->where('id', $id)->whereNot('id', config('app.super_admin_id'))->firstOrFail();
+
+        return view('pages.profile', compact('user'));
+    }
 }

@@ -20,7 +20,5 @@ Route::middleware('auth')->group(function () {
         Route::delete('{user_id}', 'destroy')->name('users.destroy');
     });
 
-    Route::get('/profile', function () {
-        return view('pages.profile');
-    })->name('profile');
+    Route::get('profile/{user_id}', [UserController::class, 'show'])->name('profile');
 });

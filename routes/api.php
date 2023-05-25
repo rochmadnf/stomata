@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{DB, Route};
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +30,4 @@ Route::post('device/set-data', [DeviceController::class, 'store']);
 
 // get all user for dashboard page
 Route::get('user-coords', [UserController::class, 'getCoords'])->name('users.coords');
+Route::get('/device-data/{device_id}', [DeviceController::class, 'show']);

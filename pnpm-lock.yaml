@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  gridjs:
+    specifier: ^6.0.6
+    version: 6.0.6
   laravel-echo:
     specifier: ^1.15.1
     version: 1.15.1
@@ -668,6 +671,12 @@ packages:
     resolution: {integrity: sha512-HZRwumpOGUrHyxO5bqKZL0B0GlUpwtCAzZ42sgxUPniu33R1LSFH5yrIcBCHjkctCAh3mtWKcKd9J4vDDdeVHA==}
     dev: false
 
+  /gridjs@6.0.6:
+    resolution: {integrity: sha512-TZ20nY+weE/wlyXOd3A9FJyJlsJ/MrHr6frMgUHFN29RmWZCYtnyfF0zuspXC81oePwSJeSZ8HY651aeyX8+rQ==}
+    dependencies:
+      preact: 10.15.0
+    dev: false
+
   /has@1.0.3:
     resolution: {integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==}
     engines: {node: '>= 0.4.0'}
@@ -979,6 +988,10 @@ packages:
 
   /potpack@2.0.0:
     resolution: {integrity: sha512-Q+/tYsFU9r7xoOJ+y/ZTtdVQwTWfzjbiXBDMM/JKUux3+QPP02iUuIoeBQ+Ot6oEDlC+/PGjB/5A3K7KKb7hcw==}
+    dev: false
+
+  /preact@10.15.0:
+    resolution: {integrity: sha512-nZSa8M2R2m1n7nJSBlzDpxRJaIsejrTO1vlFbdpFvyC8qM1iU+On2y0otfoUm6SRB5o0lF0CKDFxg6grEFU0iQ==}
     dev: false
 
   /protocol-buffers-schema@3.6.0:

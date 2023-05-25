@@ -59,7 +59,7 @@
             </li>
 
             {{-- @profile-menu --}}
-            <x-sidebar-menu label="Akun" :route="route('profile')" id="profile">
+            <x-sidebar-menu label="Akun" :route="route('profile', ['user_id' => auth()->id()])" id="profile">
                 <svg class="icon-menu group-hover:text-green-500" aria-hidden="true" fill="currentColor"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path clip-rule="evenodd"
