@@ -78,7 +78,15 @@ class UserController extends Controller
 
     public function show(int $id)
     {
-        $user = User::with('device')->where('id', $id)->whereNot('id', config('app.super_admin_id'))->firstOrFail();
+        if (auth()->id() !== $id && !auth()->user()->is_admin) abort(403);
+        $user = User::with([
+            'region' => [
+                'district',
+                'city',
+                'province'
+            ],
+            'device'
+        ])->where('id', $id)->firstOrFail();
 
         return view('pages.profile', compact('user'));
     }

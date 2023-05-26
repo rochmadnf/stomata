@@ -27,36 +27,38 @@
                 </svg>
             </x-sidebar-menu>
 
-            {{-- @users-menu --}}
-            <li>
-                <button type="button"
-                    class="{{ request()->is('users' . '*') ? 'active-menu' : '' }} group flex w-full items-center rounded-lg p-2 text-gray-600 transition duration-75 hover:bg-green-100 hover:text-green-500"
-                    aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+            @if (auth()->user()->is_admin)
+                {{-- @users-menu --}}
+                <li>
+                    <button type="button"
+                        class="{{ request()->is('users' . '*') ? 'active-menu' : '' }} group flex w-full items-center rounded-lg p-2 text-gray-600 transition duration-75 hover:bg-green-100 hover:text-green-500"
+                        aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
 
 
-                    <svg class="icon-menu flex-shrink-0 group-hover:text-green-500" aria-hidden="true"
-                        fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path clip-rule="evenodd"
-                            d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z"
-                            fill-rule="evenodd"></path>
-                        <path
-                            d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z">
-                        </path>
-                    </svg>
+                        <svg class="icon-menu flex-shrink-0 group-hover:text-green-500" aria-hidden="true"
+                            fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z"
+                                fill-rule="evenodd"></path>
+                            <path
+                                d="M5.082 14.254a8.287 8.287 0 00-1.308 5.135 9.687 9.687 0 01-1.764-.44l-.115-.04a.563.563 0 01-.373-.487l-.01-.121a3.75 3.75 0 013.57-4.047zM20.226 19.389a8.287 8.287 0 00-1.308-5.135 3.75 3.75 0 013.57 4.047l-.01.121a.563.563 0 01-.373.486l-.115.04c-.567.2-1.156.349-1.764.441z">
+                            </path>
+                        </svg>
 
-                    <span class="ml-3 flex-1 whitespace-nowrap text-left" sidebar-toggle-item>Pengguna</span>
-                    <svg sidebar-toggle-item class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <ul id="dropdown-example" class="hidden space-y-2 py-2">
-                    <x-sidebar-menu label="Aktif" extendClass="pl-11" :route="route('users.active')" id="users/active" />
-                    <x-sidebar-menu label="Nonaktif" extendClass="pl-11" :route="route('users.nonActive')" id="users/non-active" />
-                </ul>
-            </li>
+                        <span class="ml-3 flex-1 whitespace-nowrap text-left" sidebar-toggle-item>Pengguna</span>
+                        <svg sidebar-toggle-item class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <ul id="dropdown-example" class="hidden space-y-2 py-2">
+                        <x-sidebar-menu label="Aktif" extendClass="pl-11" :route="route('users.active')" id="users/active" />
+                        <x-sidebar-menu label="Nonaktif" extendClass="pl-11" :route="route('users.nonActive')" id="users/non-active" />
+                    </ul>
+                </li>
+            @endif
 
             {{-- @profile-menu --}}
             <x-sidebar-menu label="Akun" :route="route('profile', ['user_id' => auth()->id()])" id="profile">

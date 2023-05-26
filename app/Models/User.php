@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Device::class);
     }
+
+    public function region()
+    {
+        return $this->belongsTo(SubDistrict::class, 'region_id', 'id');
+    }
 }

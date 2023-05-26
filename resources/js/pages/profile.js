@@ -2,6 +2,9 @@ import { Grid } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
 
 const deviceId = Number(document.getElementById("inDeviceId").value);
+const userID = document
+    .querySelector("span[data-user]")
+    .getAttribute("data-user");
 
 const grid = new Grid({
     columns: ["Waktu", "Terisi", "Tidak Terisi"],
@@ -32,3 +35,19 @@ const grid = new Grid({
 });
 
 grid.render(document.getElementById("gridjsWrapper"));
+
+Echo.private(`user.${userID}`).listen(
+    "UpdateSingleDeviceDataEvent",
+    async (e) => {
+        console.info("Update Single");
+
+        // update data terkini
+        document.querySelector("#colTime").textContent = e.field.created;
+        document.querySelector("#colFill").textContent = e.field.filled + "%";
+        document.querySelector("#colUnfill").textContent =
+            e.field.unfilled + "%";
+
+        // update histori data
+        grid.forceRender();
+    }
+);
