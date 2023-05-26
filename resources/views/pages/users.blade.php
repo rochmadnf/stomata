@@ -52,11 +52,11 @@
                                 </td>
                                 <td class="flex items-center space-x-3 px-6 py-4">
                                     {{-- @detail --}}
-                                    <a href="#" data-tooltip-target="tooltip-info" data-tooltip-placement="top"
-                                        role="button"
+                                    <button data-button="detail-account" data-user="{{ $au->id }}"
+                                        data-tooltip-target="tooltip-info" data-tooltip-placement="top" role="button"
                                         class="inline-flex items-center rounded-lg bg-blue-500 p-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 hover:text-red-50 focus:outline-none focus:ring-4 focus:ring-blue-300">
                                         <i class="fa-solid fa-circle-info"></i>
-                                    </a>
+                                    </button>
                                     <div id="tooltip-info" role="tooltip"
                                         class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
                                         Detail

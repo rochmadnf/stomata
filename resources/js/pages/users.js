@@ -81,3 +81,14 @@ document
             );
         });
     });
+
+document
+    .querySelectorAll('[data-button="detail-account"]')
+    .forEach((btnDetailAccount) => {
+        btnDetailAccount.addEventListener("click", async (el) => {
+            const item = el.target.closest("button");
+            location.href = `${
+                import.meta.env.VITE_APP_URL
+            }/profile/${item.getAttribute("data-user")}`;
+        });
+    });
