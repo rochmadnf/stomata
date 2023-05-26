@@ -19,6 +19,19 @@
                                 {{ $user?->full_name }}
                             </td>
                         </tr>
+                        @if (auth()->user()->is_admin)
+                            <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                                <th scope="row"
+                                    class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                    Status
+                                </th>
+                                <td class="px-6 py-4">
+                                    {!! $user?->is_active
+                                        ? '<span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">Aktif</span>'
+                                        : '<span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">Tidak Aktif</span>' !!}
+                                </td>
+                            </tr>
+                        @endif
                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                             <th scope="row"
                                 class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
@@ -123,7 +136,7 @@
                                     Terdaftar
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $user?->device?->created_at->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y') }}
+                                    {{ $user?->device?->created_at?->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y') }}
                                 </td>
                             </tr>
                         </tbody>
@@ -149,7 +162,7 @@
                                         Waktu
                                     </th>
                                     <td class="px-4 py-2" id="colTime">
-                                        {{ $user?->device?->lastDeviceData->created_at->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y H:i:s') }}
+                                        {{ $user?->device?->lastDeviceData?->created_at->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y H:i:s') ?? 'Belum Tersedia' }}
                                     </td>
                                 </tr>
                                 <tr class="bg-white">
@@ -158,7 +171,7 @@
                                         Terisi
                                     </th>
                                     <td class="px-4 py-2" id="colFill">
-                                        {{ $user?->device?->lastDeviceData->filled . '%' }}
+                                        {{ $user?->device?->lastDeviceData?->filled . '%' ?? 'Belum Tersedia' }}
                                     </td>
                                 </tr>
                                 <tr class="bg-white">
@@ -167,7 +180,7 @@
                                         Kosong
                                     </th>
                                     <td class="px-4 py-2" id="colUnfill">
-                                        {{ $user?->device?->lastDeviceData->unfilled . '%' }}
+                                        {{ $user?->device?->lastDeviceData?->unfilled . '%' ?? 'Belum Tersedia' }}
                                     </td>
                                 </tr>
                             </tbody>
