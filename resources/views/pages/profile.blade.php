@@ -103,7 +103,7 @@
         <div class="my-10 w-full border-2 border-dashed border-gray-300"></div>
 
         @if (auth()->user()->is_admin && (int) $user->id !== (int) config('app.super_admin_id'))
-            <div class="mb-4">
+            <div class="mb-4 scroll-mt-4" id="deviceInfo">
                 <h4 class="mb-2 w-fit rounded-md bg-green-400 px-4 py-2 font-semibold text-white">Tempat Sampah
                 </h4>
                 <div class="relative mb-4 overflow-x-auto shadow-md sm:rounded-lg">

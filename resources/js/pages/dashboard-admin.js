@@ -49,9 +49,10 @@ const setMarker = async () => {
                         offset: 35,
                     }).setHTML(
                         `<div class="flex flex-col gap-2 justify-center items-center">
-                        <strong class="text-lg select-none cursor-pointer hover:text-green-500 hover:border-b-green-500 text-gray-900 border-b-2 border-b-gray-700">${
-                            user.full_name
-                        }</strong>
+                        <a href="${import.meta.env.VITE_APP_URL}/profile/${
+                            user.id
+                        }#deviceInfo" class="text-lg select-none cursor-pointer hover:text-green-500 hover:border-b-green-500 text-gray-900 border-b-2 border-b-gray-700">
+                        ${user.full_name}</a>
                         <p>${user.address}</p>
                         <div class="flex gap-2 border border-slate-300 py-1 px-2 rounded-md">
                             <p class="text-xs">Terisi: <strong class="font-bold text-gray-900">${filledSpace}%</strong></p>
