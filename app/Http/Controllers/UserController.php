@@ -79,6 +79,7 @@ class UserController extends Controller
     public function show(int $id)
     {
         if (auth()->id() !== $id && !auth()->user()->is_admin) abort(403);
+
         $user = User::with([
             'region' => [
                 'district',
@@ -88,6 +89,9 @@ class UserController extends Controller
             'device'
         ])->where('id', $id)->firstOrFail();
 
+        if ((int)$id === (int) config('app.super_admin_id')) {
+            return view('pages.profile-sa', compact('user'));
+        }
         return view('pages.profile', compact('user'));
     }
 }
