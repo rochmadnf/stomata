@@ -1,4 +1,4 @@
-<x-main-layout subtitle="test" :sidebar="false">
+<x-main-layout subtitle="landing" :sidebar="false">
     <div class="min-h-screen bg-green-50 bg-leaf-green-400/10">
         <div class="relative isolate px-6 pt-14 lg:px-8">
             <div class="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
