@@ -1,4 +1,21 @@
 <x-main-layout subtitle="akun">
+    @if (session()->has('success'))
+        <div id="alert-2" class="my-4 flex rounded-lg bg-green-400 p-4 text-green-50" role="alert">
+            <div class="ml-3 text-sm font-medium">
+                {{ session()->get('success') }}
+            </div>
+            <button type="button"
+                class="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-lg bg-green-400 p-1.5 text-green-50 hover:bg-green-50 hover:text-green-400 focus:ring-2 focus:ring-green-400 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"
+                data-dismiss-target="#alert-2" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+    @endif
     <div class="rounded-lg p-4">
         <h1 class="mb-4 text-2xl font-bold text-slate-800 lg:mb-8">Akun @if (auth()->user()->is_admin && auth()->id() !== $user->id)
                 "{{ ucwords($user->full_name) }}"
@@ -100,6 +117,45 @@
             </div>
         </div>
 
+        <div class="mb-4">
+            <h4 class="mb-2 w-fit rounded-md bg-green-400 px-4 py-2 font-semibold text-white">Info Kredensial</h4>
+            <div class="relative mb-4 overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+                    <tbody>
+                        <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                            <th scope="row"
+                                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                Email
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $user?->email }}
+                            </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=email"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
+                        </tr>
+                        <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                            <th scope="row"
+                                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                Katasandi
+                            </th>
+                            <td class="px-6 py-4">
+                                ********
+                            </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=password"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div class="my-10 w-full border-2 border-dashed border-gray-300"></div>
 
         @if (auth()->user()->is_admin && (int) $user->id !== (int) config('app.super_admin_id'))

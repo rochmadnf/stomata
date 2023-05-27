@@ -94,4 +94,13 @@ class UserController extends Controller
         }
         return view('pages.profile', compact('user'));
     }
+
+    public function edit(Request $request, int $id)
+    {
+        abort_if((int)auth()->id() !== (int) $id, 403, 'Forbidden');
+
+        if ($request->type === 'email') {
+            return view("pages.profile.email", compact('id'));
+        }
+    }
 }
