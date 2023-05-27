@@ -20,6 +20,7 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->request->set('phone_number', Str::remove('-', $request->phone_number));
+        $request->request->set('gender', intval($request->gender));
 
         $this->isValidRequest(
             $request->except('_token'),
