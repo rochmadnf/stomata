@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->char('token', 13)->unique();
+            $table->char('token', 21)->unique();
             $table->string('name', 100)->index();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
