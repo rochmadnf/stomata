@@ -1,6 +1,5 @@
 import axios from "axios";
 import "../mapbox";
-import Spinner from "../components/icons/spinner";
 import Masker from "vanilla-masker";
 
 import { SwalToast } from "../components/SweetAlert";
@@ -43,7 +42,7 @@ regisForm.addEventListener("submit", async (e) => {
 
     const property = new FormData(e.target);
     btnSubmit.setAttribute("disabled", true);
-    btnSubmit.innerHTML = Spinner({ class: "w-4 h-4 text-white" });
+    btnSubmit.innerHTML = `<i class="fa-solid fa-spinner-third fa-spin-pulse fa-2x"></i>`;
 
     await axios
         .post(e.target.action, property)
