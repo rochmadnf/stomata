@@ -120,5 +120,9 @@ class UserController extends Controller
         if ($request->type === 'email') {
             return view("pages.profile.email", compact('id'));
         }
+
+        if ($request->type === 'password') {
+            return view("pages.profile.password", compact('id'));
+        }
     }
 }

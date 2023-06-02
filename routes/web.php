@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{UpdateEmailController, UserController};
+use App\Http\Controllers\{UpdateEmailController, UpdatePasswordController, UserController};
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('profile/update')->group(function () {
         Route::post('email/{id}', UpdateEmailController::class)->name('profile.update.email');
         Route::get('email/rollback/{user_id}', [UpdateEmailController::class, 'rollback'])->name('profile.rollback.email');
+
+        Route::post('password/{id}', UpdatePasswordController::class)->name('profile.update.password');
     });
 });
