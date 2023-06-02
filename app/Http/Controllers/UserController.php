@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SingleUserResource;
 use App\Mail\UserActivationMail;
 use App\Mail\UserDeleteMail;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -123,6 +125,27 @@ class UserController extends Controller
 
         if ($request->type === 'password') {
             return view("pages.profile.password", compact('id'));
+        }
+
+        if (in_array($request->type, ['full_name', 'phone_number', 'gender', 'address', 'district', 'sub_district'])) {
+
+            $user = User::with([
+                'region' => [
+                    'district',
+                    'city',
+                    'province'
+                ],
+            ])->where('id', $id)->firstOrFail();
+            $districts = DB::table('districts')->where('city_code', 71)->get();
+            $sub_districts = DB::table('sub_districts')->where('district_code', $user->region->district->code)->get();
+
+            // override attribute
+            $user['gender'] = $user->gender === 1 ? 'Laki - Laki' : "Perempuan";
+            $user['district'] = $user->region->district->name;
+            $user['sub_district'] = $user->region->name;
+
+
+            return view("pages.profile.personal", ["user" => $user, "type" => $request->type, 'districts' => $districts, 'sub_districts' => $sub_districts]);
         }
     }
 }

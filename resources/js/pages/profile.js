@@ -1,10 +1,15 @@
 import { Grid } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
 
-const deviceId = Number(document.getElementById("inDeviceId").value);
-const userID = document
-    .querySelector("span[data-user]")
-    .getAttribute("data-user");
+let deviceId, userID, gridJsWrapper;
+
+if (document.getElementById("inDeviceId")) {
+    deviceId = Number(document.getElementById("inDeviceId").value);
+    userID = document
+        .querySelector("span[data-user]")
+        .getAttribute("data-user");
+    gridJsWrapper = document.getElementById("gridjsWrapper");
+}
 
 const grid = new Grid({
     columns: ["Waktu", "Terisi", "Tidak Terisi"],
@@ -34,20 +39,22 @@ const grid = new Grid({
     },
 });
 
-grid.render(document.getElementById("gridjsWrapper"));
+if (deviceId) {
+    grid.render(gridJsWrapper);
+    Echo.private(`user.${userID}`).listen(
+        "UpdateSingleDeviceDataEvent",
+        async (e) => {
+            console.info("Update Single");
 
-Echo.private(`user.${userID}`).listen(
-    "UpdateSingleDeviceDataEvent",
-    async (e) => {
-        console.info("Update Single");
+            // update data terkini
+            document.querySelector("#colTime").textContent = e.field.created;
+            document.querySelector("#colFill").textContent =
+                e.field.filled + "%";
+            document.querySelector("#colUnfill").textContent =
+                e.field.unfilled + "%";
 
-        // update data terkini
-        document.querySelector("#colTime").textContent = e.field.created;
-        document.querySelector("#colFill").textContent = e.field.filled + "%";
-        document.querySelector("#colUnfill").textContent =
-            e.field.unfilled + "%";
-
-        // update histori data
-        grid.forceRender();
-    }
-);
+            // update histori data
+            grid.forceRender();
+        }
+    );
+}

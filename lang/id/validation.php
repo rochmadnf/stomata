@@ -146,9 +146,10 @@ return [
     ],
 
     'attributes' => [
-        "password"     => 'katasandi',
-        "full_name"    => 'nama lengkap',
-        'address'      => 'alamat',
+        "password"  => 'katasandi',
+        "full_name" => 'nama lengkap',
+        'address'   => 'alamat',
+        'data_edit' => 'Data yang kamu masukkan',
 
         'old_password' => 'katasandi lama',
     ],

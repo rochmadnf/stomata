@@ -35,6 +35,13 @@
                             <td class="px-6 py-4">
                                 {{ $user?->full_name }}
                             </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=full_name"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
+
                         </tr>
                         @if (auth()->user()->is_admin)
                             <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -42,7 +49,7 @@
                                     class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                                     Status
                                 </th>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4" colspan="2">
                                     {!! $user?->is_active
                                         ? '<span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">Aktif</span>'
                                         : '<span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">Tidak Aktif</span>' !!}
@@ -57,6 +64,13 @@
                             <td class="px-6 py-4">
                                 {{ $user?->phone_number }}
                             </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=phone_number"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
+
                         </tr>
                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                             <th scope="row"
@@ -66,6 +80,12 @@
                             <td class="px-6 py-4">
                                 {{ $user?->gender ? 'Laki-Laki' : 'Perempuan' }}
                             </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=gender"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
                         </tr>
                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                             <th scope="row"
@@ -75,13 +95,19 @@
                             <td class="px-6 py-4">
                                 {{ $user?->address }}
                             </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=address"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
                         </tr>
                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                             <th scope="row"
                                 class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                                 Provinsi
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4" colspan="2">
                                 {{ $user?->region?->province?->name }}
                             </td>
                         </tr>
@@ -90,7 +116,7 @@
                                 class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
                                 Kota/Kabupaten
                             </th>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4" colspan="2">
                                 {{ $user?->region?->city?->name }}
                             </td>
                         </tr>
@@ -102,6 +128,12 @@
                             <td class="px-6 py-4">
                                 {{ $user?->region?->district?->name }}
                             </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=district"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
                         </tr>
                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                             <th scope="row"
@@ -111,6 +143,12 @@
                             <td class="px-6 py-4">
                                 {{ $user?->region?->name }}
                             </td>
+                            @if (auth()->id() === $user?->id)
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=sub_district"
+                                        class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                                </td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>

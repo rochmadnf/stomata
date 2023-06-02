@@ -11,6 +11,7 @@ export default defineConfig({
                 "resources/js/pages/dashboard-admin.js",
                 "resources/js/pages/users.js",
                 "resources/js/pages/profile.js",
+                "resources/js/pages/personal.js",
             ],
             refresh: true,
         }),
