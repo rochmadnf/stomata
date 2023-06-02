@@ -3,7 +3,8 @@
         <h1 class="mb-4 text-2xl font-bold text-slate-800 lg:mb-8">Ubah Email</h1>
 
         <div class="rounded-md bg-white px-4 py-2">
-            <form action="{{ route('profile.update.email', ['id' => $id]) }}" method="POST" class="space-y-6">
+            <form id="fusUpdate" action="{{ route('profile.update.email', ['id' => $id]) }}" method="POST"
+                class="space-y-6">
                 @csrf
                 <x-forms.input label="email baru" name="email" type="email" placeholder="rochmadnf@jti.id"
                     :required="true" />
@@ -19,9 +20,10 @@
 
     <x-slot name='scripts'>
         <script>
-            document.querySelector('#btnSave').addEventListener('click', (e) => {
-                e.target.setAttribute('disabled', true);
-                e.target.innerHTML = `<i class="fa-duotone fa-spinner-third fa-spin text-white fa-2x"></i>`;
+            document.querySelector('#fusUpdate').addEventListener('submit', (e) => {
+                document.querySelector('#btnSave').setAttribute('disabled', true);
+                document.querySelector('#btnSave').innerHTML =
+                    `<i class="fa-duotone fa-spinner-third fa-spin text-white fa-2x"></i>`;
                 document.querySelector('#btnBack').setAttribute('href', 'javascript:void(0)');
             });
         </script>
