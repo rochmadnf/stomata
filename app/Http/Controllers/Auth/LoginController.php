@@ -35,7 +35,9 @@ class LoginController extends Controller
             return back()->withErrors(['erlogin' => 'Akun kamu belum aktif.']);
         };
 
-        Auth::attempt($request->only('email', 'password'));
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return back()->withErrors(['erlogin' => 'Email atau Katasandi keliru.']);
+        };
 
         session()->put('username', auth()->user()->full_name);
 
