@@ -1,8 +1,8 @@
-<x-main-layout subtitle="Login" :sidebar="false">
+<x-main-layout subtitle="Reset Katasandi" :sidebar="false">
     <div class="flex min-h-screen items-center justify-center bg-leaf-green-100">
-        <x-card cardTitle="Login" size="max-w-sm">
+        <x-card cardTitle="Reset Katansadi" size="max-w-sm">
             <div>
-                <form action="{{ route('auth.login') }}" method="POST" class="space-y-6">
+                <form action="{{ route('auth.reset_password') }}" method="POST" class="space-y-6">
                     @if ($errors->has('erlogin'))
                         <div id="alert-2" class="my-4 flex rounded-lg bg-red-500 p-4 text-red-50" role="alert">
                             <div class="ml-3 text-sm font-medium">
@@ -22,16 +22,30 @@
                         </div>
                     @endif
 
+                    @if (session()->has('success'))
+                        <div class="mt-4 rounded-lg bg-emerald-500 p-2 text-sm font-bold text-gray-50">
+                            Tautan reset katasandi telah berhasil dikirim ke email kamu. Silakan cek email kamu.
+                        </div>
+                    @else
+                        <div class="mb-4">
+                            <p class="rounded-md bg-green-100 p-4 text-sm text-gray-700">Silakan masukkan email
+                                akun kamu.
+                                Kami
+                                akan
+                                mengirimkan tautan
+                                untuk melakukan reset katasandi.</p>
+                        </div>
+                    @endif
+
                     @csrf
                     <x-forms.input label="email" name="email" type="email" placeholder="rochmadnf@jti.id" />
-                    <x-forms.input label="katasandi" name="password" type="password" placeholder="password" />
 
                     <x-forms.button label="Login" color="primary" />
                 </form>
             </div>
 
-            <p class="text-sm font-light">Lupa Katasandi?
-                <a class="text-green-500" href="{{ route('auth.ireset_password') }}">Reset</a>
+            <p class="text-sm font-light">Sudah memiliki akun?
+                <a class="text-green-500" href="{{ route('auth.ilogin') }}">Login</a>
             </p>
             <p class="text-sm font-light">Belum memiliki akun?
                 <a class="text-green-500" href="{{ route('auth.iregister') }}">Daftar</a>
