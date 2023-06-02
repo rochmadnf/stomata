@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(UserController::class)->middleware('isAdmin')->prefix('users')->group(function () {
         Route::get('active', 'index')->name('users.active');
         Route::get('non-active', 'indexNon')->name('users.nonActive');
+        Route::put('{user_id}', 'promoteAdmin')->name('users.promote');
         Route::patch('{user_id}', 'activation')->name('users.activation');
         Route::delete('{user_id}', 'destroy')->name('users.destroy');
     });

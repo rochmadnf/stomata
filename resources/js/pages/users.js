@@ -74,11 +74,7 @@ document
     .forEach((btnActivation) => {
         btnActivation.addEventListener("click", async (el) => {
             const item = el.target.closest("button");
-            await confirmAlert(
-                "Anda akan mengaktifkan akun yang dipilih.",
-                item.getAttribute("data-user"),
-                "PATCH"
-            );
+            await confirmAlert("", item.getAttribute("data-user"), "PATCH");
         });
     });
 
@@ -90,5 +86,15 @@ document
             location.href = `${
                 import.meta.env.VITE_APP_URL
             }/profile/${item.getAttribute("data-user")}`;
+        });
+    });
+
+document
+    .querySelectorAll('[data-button="promote-admin"]')
+    .forEach((btnPromote) => {
+        btnPromote.addEventListener("click", async (el) => {
+            const item = el.target.closest("button");
+            await confirmAlert("", item.getAttribute("data-user"), "PUT");
+            console.log(item);
         });
     });

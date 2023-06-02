@@ -44,6 +44,7 @@ class UserController extends Controller
         $reactivate = $isActive && !is_null($user->device);
 
         $user->update(['is_active' => $isActive]);
+        $user->forceFill(['remember_token' => Str::random(10)])->update();
 
 
         Mail::to($user->email)->send(new UserActivationMail($user->full_name, $isActive, $reactivate));
@@ -51,6 +52,23 @@ class UserController extends Controller
         $message = ($isActive ? "aktifkan" : "nonaktifkan");
 
         return response()->json(["status" => "success", "message" => "Akun berhasil di" . $message]);
+    }
+
+    public function promoteAdmin($id)
+    {
+        $user = User::with('device')->where('id', $id)->first();
+
+        if (is_null($user)) {
+            return response()->json(["status" => "failed", "message" => "Data tidak ditemukan"], 404);
+        }
+
+        $isAdmin = !filter_var($user->is_admin, FILTER_VALIDATE_BOOLEAN);
+        $user->update(['is_admin' => $isAdmin]);
+
+        $message = ($isAdmin ? "Akun {$user->full_name} berhasil dijadikan Admin" : "Peran Admin berhasil dilepas dari akun {$user->full_name}");
+
+
+        return response()->json(["status" => "success", "message" => $message]);
     }
 
     public function destroy($id)

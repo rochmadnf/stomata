@@ -12,16 +12,16 @@
                         <th scope="col" class="px-6 py-3">
                             Nama Lengkap
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-2 py-3">
                             No. HP
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Alamat
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-2 py-3">
                             Jenis Kelamin
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                             Aksi
                         </th>
                     </tr>
@@ -41,16 +41,40 @@
                                 <td class="px-6 py-4">
                                     {{ $au->full_name }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="bg-green-100/30 py-4 px-2">
                                     {{ $au->phone_number }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $au->address }}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="bg-green-100/30 px-2 py-4">
                                     {{ (int) $au->gender === 1 ? 'Laki-Laki' : 'Perempuan' }}
                                 </td>
-                                <td class="flex items-center space-x-3 px-6 py-4">
+                                <td class="flex items-center justify-center space-x-3 px-6 py-4">
+                                    {{-- @promote_admin --}}
+                                    @if ((int) auth()->id() === (int) config('app.super_admin_id') && $au->is_active)
+                                        <button data-button="promote-admin" data-user="{{ $au->id }}"
+                                            data-tooltip-target="tooltip-promote-{{ $au->id . $au->remember_token }}"
+                                            data-tooltip-placement="left" role="button"
+                                            class="{{ (bool) $au->is_admin ? 'bg-slate-950 hover:opacity-50 focus:ring-slate-300' : 'bg-emerald-500 hover:bg-emerald-700 focus:ring-emerald-300' }} inline-flex items-center rounded-lg p-2.5 text-center text-sm font-medium text-white hover:text-red-50 focus:outline-none focus:ring-4">
+                                            @if ($au->is_admin)
+                                                <i class="fa-solid fa-user-xmark"></i>
+                                            @else
+                                                <i class="fa-solid fa-user-tie mx-[0.150rem]"></i>
+                                            @endif
+                                        </button>
+
+                                        <div id="tooltip-promote-{{ $au->id . $au->remember_token }}" role="tooltip"
+                                            class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm dark:bg-gray-700">
+                                            @if ($au->is_admin)
+                                                Lepas Peran Admin
+                                            @else
+                                                Promosikan Jadi Admin
+                                            @endif
+                                            <div class="tooltip-arrow" data-popper-arrow></div>
+                                        </div>
+                                    @endif
+
                                     {{-- @detail --}}
                                     <button data-button="detail-account" data-user="{{ $au->id }}"
                                         data-tooltip-target="tooltip-info" data-tooltip-placement="top" role="button"
