@@ -15,6 +15,10 @@
                             <td class="px-6 py-4">
                                 {{ $user?->full_name }}
                             </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=full_name"
+                                    class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                            </td>
                         </tr>
                         <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
                             <th scope="row"
@@ -23,6 +27,23 @@
                             </th>
                             <td class="px-6 py-4">
                                 {{ $user?->email }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=email"
+                                    class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
+                            </td>
+                        </tr>
+                        <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                            <th scope="row"
+                                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+                                Katasandi
+                            </th>
+                            <td class="px-6 py-4">
+                                ********
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=password"
+                                    class="font-medium text-blue-600 hover:underline dark:text-blue-500">Edit</a>
                             </td>
                         </tr>
                     </tbody>

@@ -119,6 +119,19 @@ class UserController extends Controller
     {
         abort_if((int)auth()->id() !== (int) $id, 403, 'Forbidden');
 
+        $user = User::with([
+            'region' => [
+                'district',
+                'city',
+                'province'
+            ],
+        ])->where('id', $id)->firstOrFail();
+
+        if ((int) auth()->id() === (int)config('app.super_admin_id') && in_array($request->type, ['full_name'])) {
+            $type = $request->type;
+            return view("pages.profile.personal", compact('user', 'type'));
+        }
+
         if ($request->type === 'email') {
             return view("pages.profile.email", compact('id'));
         }
@@ -129,20 +142,15 @@ class UserController extends Controller
 
         if (in_array($request->type, ['full_name', 'phone_number', 'gender', 'address', 'district', 'sub_district'])) {
 
-            $user = User::with([
-                'region' => [
-                    'district',
-                    'city',
-                    'province'
-                ],
-            ])->where('id', $id)->firstOrFail();
+            abort_if((int) auth()->id() === (int) config('app.super_admin_id'), 404);
+
             $districts = DB::table('districts')->where('city_code', 71)->get();
-            $sub_districts = DB::table('sub_districts')->where('district_code', $user->region->district->code)->get();
+            $sub_districts = DB::table('sub_districts')->where('district_code', $user?->region?->district?->code)->get();
 
             // override attribute
             $user['gender'] = $user->gender === 1 ? 'Laki - Laki' : "Perempuan";
-            $user['district'] = $user->region->district->name;
-            $user['sub_district'] = $user->region->name;
+            $user['district'] = $user?->region?->district?->name;
+            $user['sub_district'] = $user?->region?->name;
 
 
             return view("pages.profile.personal", ["user" => $user, "type" => $request->type, 'districts' => $districts, 'sub_districts' => $sub_districts]);
