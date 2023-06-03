@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{UpdateEmailController, UpdatePasswordController, UpdatePersonalController, UserController};
+use App\Http\Controllers\{UpdateCoordController, UpdateEmailController, UpdatePasswordController, UpdatePersonalController, UserController};
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
         Route::get('email/rollback/{user_id}', [UpdateEmailController::class, 'rollback'])->name('profile.rollback.email');
 
         Route::post('password/{id}', UpdatePasswordController::class)->name('profile.update.password');
+        Route::post('coord/{id}', UpdateCoordController::class)->name('profile.update.coords');
         Route::post('personal/{id}', UpdatePersonalController::class)->name('profile.update.personal');
     });
 });

@@ -194,6 +194,26 @@
                 </table>
             </div>
         </div>
+
+        <div class="mb-4">
+            <div class="flex gap-x-4">
+                <h4 class="mb-2 w-fit rounded-md bg-green-400 px-4 py-2 font-semibold text-white">Info Titik Koordinat
+                </h4>
+                @if (auth()->id() === $user?->id)
+                    <a href="{{ route('profile.edit', ['user_id' => $user?->id]) }}?type=coords"
+                        class="group relative mb-2 mr-2 inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 p-0.5 text-sm font-medium text-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-cyan-200 group-hover:from-cyan-500 group-hover:to-blue-500 dark:text-white dark:focus:ring-cyan-800">
+                        <span
+                            class="relative rounded-md bg-white px-5 py-2.5 transition-all duration-75 ease-in group-hover:bg-opacity-0 dark:bg-gray-900">
+                            Edit
+                        </span>
+                    </a>
+                @endif
+            </div>
+            <span id="coordinateXX" class="hidden" data-long="{{ $user->long }}"
+                data-lat="{{ $user->lat }}"></span>
+            <div id="mapboxWrapper" class="h-[calc(100vh-200px)] rounded-lg shadow-md shadow-gray-400"></div>
+        </div>
+
         <div class="my-10 w-full border-2 border-dashed border-gray-300"></div>
 
         @if (auth()->user()->is_admin && (int) $user->id !== (int) config('app.super_admin_id'))

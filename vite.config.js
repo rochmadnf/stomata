@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 "resources/css/app.css",
                 "resources/js/app.js",
+                "resources/js/edit-coords.js",
                 "resources/js/pages/register.js",
                 "resources/js/pages/dashboard-admin.js",
                 "resources/js/pages/users.js",

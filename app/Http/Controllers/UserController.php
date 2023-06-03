@@ -136,6 +136,10 @@ class UserController extends Controller
             return view("pages.profile.email", compact('id'));
         }
 
+        if ($request->type === 'coords') {
+            return view("pages.profile.coords", compact('id'));
+        }
+
         if ($request->type === 'password') {
             return view("pages.profile.password", compact('id'));
         }

@@ -1,5 +1,41 @@
 import { Grid } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+
+// mapbox view
+if (document.querySelector("#coordinateXX")) {
+    const coordinates = document.querySelector("#coordinateXX");
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
+    const defaultCoordinate = [
+        coordinates.getAttribute("data-long"),
+        coordinates.getAttribute("data-lat"),
+    ];
+    const map = new mapboxgl.Map({
+        container: "mapboxWrapper",
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: defaultCoordinate,
+        zoom: 15,
+        doubleClickZoom: false,
+    });
+    const marker = new mapboxgl.Marker({
+        color: "#111827",
+    });
+    map.addControl(new mapboxgl.NavigationControl());
+    marker.remove();
+    marker
+        .setLngLat([
+            coordinates.getAttribute("data-long"),
+            coordinates.getAttribute("data-lat"),
+        ])
+        .setPopup(
+            new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: true,
+            }).setText("Lokasi Tempat Sampah Kamu")
+        )
+        .addTo(map);
+}
 
 let deviceId, userID, gridJsWrapper;
 
