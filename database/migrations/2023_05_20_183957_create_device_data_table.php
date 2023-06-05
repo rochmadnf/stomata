@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('device_data', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('device_id')->constrained('devices')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->unsignedTinyInteger('filled');
-            $table->unsignedTinyInteger('unfilled');
+            $table->double('filled');
+            $table->double('unfilled');
             $table->timestamps();
         });
     }
