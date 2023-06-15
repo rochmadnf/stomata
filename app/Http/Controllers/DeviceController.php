@@ -13,8 +13,8 @@ class DeviceController extends Controller
     {
         $this->isValidRequest($request->all(), [
             "device_token" => ['required', 'string', 'size:21', 'exists:devices,token'],
-            "filled"       => ['required', 'integer', 'min:0', 'max:100'],
-            "unfilled"     => ['required', 'integer', 'min:0', 'max:100'],
+            "filled"       => ['required', 'min:0', 'max:100'],
+            "unfilled"     => ['required', 'min:0', 'max:100'],
         ], 'api');
 
         $device = Device::with('user', 'deviceData')->where('token', $request->device_token)->first();
