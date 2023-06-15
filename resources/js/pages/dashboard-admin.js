@@ -23,7 +23,7 @@ const setMarker = async () => {
 
     users.data.forEach((user) => {
         let markerColor = "";
-        const filledSpace = user.device.last_device_data?.filled ?? 0;
+        const filledSpace = user?.device?.last_device_data?.filled ?? 0;
 
         // color
         if (filledSpace > 75) {
@@ -35,7 +35,7 @@ const setMarker = async () => {
         }
 
         markers.push({
-            deviceToken: user.device.token,
+            deviceToken: user?.device?.token,
             element: new mapboxgl.Marker({
                 color: markerColor,
             })
@@ -57,7 +57,7 @@ const setMarker = async () => {
                         <div class="flex gap-2 border border-slate-300 py-1 px-2 rounded-md">
                             <p class="text-xs">Terisi: <strong class="font-bold text-gray-900">${filledSpace}%</strong></p>
                             <p class="text-xs">Kosong: <strong class="font-bold text-gray-900">${
-                                user.device.last_device_data?.unfilled ?? 0
+                                user?.device?.last_device_data?.unfilled ?? 0
                             }%</strong></p>
                         </div>
                     </div>
