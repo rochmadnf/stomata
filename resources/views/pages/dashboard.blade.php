@@ -68,7 +68,7 @@
                                     Waktu
                                 </th>
                                 <td class="px-4 py-2" id="colTime">
-                                    {{ $user->device->lastDeviceData->created_at->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y H:i:s') }}
+                                    {{ $user?->device?->lastDeviceData?->created_at->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y H:i:s') ?? 'Belum Tersedia' }}
                                 </td>
                             </tr>
                             <tr class="bg-white">
@@ -77,7 +77,7 @@
                                     Terisi
                                 </th>
                                 <td class="px-4 py-2" id="colFill">
-                                    {{ $user->device->lastDeviceData->filled . '%' }}
+                                    {{ $user?->device?->lastDeviceData?->filled . '%' }}
                                 </td>
                             </tr>
                             <tr class="bg-white">
@@ -86,7 +86,7 @@
                                     Kosong
                                 </th>
                                 <td class="px-4 py-2" id="colUnfill">
-                                    {{ $user->device->lastDeviceData->unfilled . '%' }}
+                                    {{ $user?->device?->lastDeviceData?->unfilled . '%' }}
                                 </td>
                             </tr>
                         </tbody>
