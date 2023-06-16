@@ -19,7 +19,7 @@ class DeviceController extends Controller
 
         $device = Device::with('user', 'deviceData')->where('token', $request->device_token)->first();
 
-        $attr = $device->deviceData()->create(["filled" => $request->filled, "unfilled" => $request->unfilled]);
+        $attr = $device->deviceData()->create(["filled" => number_format(floatval($request->filled), 2), "unfilled" => number_format(floatval($request->unfilled), 2)]);
         // send broadcast with pusher
         broadcast(new UpdateSingleDeviceDataEvent($device->user_id, [
             $attr->created_at->setTimezone('Asia/Makassar')->translatedFormat('l, d F Y H:i:s'),
