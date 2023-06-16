@@ -54,8 +54,8 @@ const grid = new Grid({
         then: (data) =>
             data.map((device) => [
                 device.created_at,
-                device.filled + "%",
-                device.unfilled + "%",
+                device.filled.replace(".", ",") + "%",
+                device.unfilled.replace(".", ",") + "%",
             ]),
     },
     pagination: {
@@ -85,9 +85,9 @@ if (deviceId) {
             // update data terkini
             document.querySelector("#colTime").textContent = e.field.created;
             document.querySelector("#colFill").textContent =
-                e.field.filled + "%";
+                e.field.filled.replace(".", ",") + "%";
             document.querySelector("#colUnfill").textContent =
-                e.field.unfilled + "%";
+                e.field.unfilled.replace(".", ",") + "%";
 
             // update histori data
             grid.forceRender();
