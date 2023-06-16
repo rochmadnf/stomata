@@ -55,9 +55,15 @@ const setMarker = async () => {
                         ${user.full_name}</a>
                         <p>${user.address}</p>
                         <div class="flex gap-2 border border-slate-300 py-1 px-2 rounded-md">
-                            <p class="text-xs">Terisi: <strong class="font-bold text-gray-900">${filledSpace}%</strong></p>
+                            <p class="text-xs">Terisi: <strong class="font-bold text-gray-900">${filledSpace.replace(
+                                ".",
+                                ","
+                            )}%</strong></p>
                             <p class="text-xs">Kosong: <strong class="font-bold text-gray-900">${
-                                user?.device?.last_device_data?.unfilled ?? 0
+                                user?.device?.last_device_data?.unfilled.replace(
+                                    ".",
+                                    ","
+                                ) ?? 0
                             }%</strong></p>
                         </div>
                     </div>
